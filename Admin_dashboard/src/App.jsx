@@ -4,6 +4,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { darkTheme, lightTheme } from "./theme/theme";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import InventoryDashboard from "./pages/InventoryDashboard";
+import InstallationModule from "./pages/InstallationModule";
+import ServiceVisitLogs from "./pages/ServiceVisitLogs";
+import AMCTracker from "./pages/AMCTracker";
+import AlertsPhotoLogs from "./pages/AlertsPhotoLogs";
 
 const App = () => {
   const mode = useSelector((state) => state.theme.mode);
@@ -18,8 +23,24 @@ const App = () => {
           element: <AppLayout />,
           children: [
             {
-              path: "dashboard",
-              element: "",
+              path: "",
+              element: <InventoryDashboard />,
+            },
+            {
+              path: "/installation",
+              element: <InstallationModule />,
+            },
+            {
+              path: "/service-logs",
+              element: <ServiceVisitLogs />,
+            },
+            {
+              path: "/contracts",
+              element: <AMCTracker />,
+            },
+            {
+              path: "/alerts",
+              element: <AlertsPhotoLogs />,
             },
           ],
         },

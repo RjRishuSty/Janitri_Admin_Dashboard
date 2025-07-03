@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   Box,
   Drawer,
@@ -15,6 +15,8 @@ import { flexCenter } from "../styles/custom.style";
 
 const Sidebar = () => {
   const isToggle = useSelector((state) => state.layout.isToggle);
+  const location = useLocation();
+  const isActive = location.pathname;
   return (
     <Box
       sx={{
@@ -44,7 +46,7 @@ const Sidebar = () => {
             key={index}
             component={NavLink}
             to={item.path}
-            sx={{ ...(isToggle && flexCenter) }}
+            sx={{ ...(isToggle && flexCenter), backgroundColor:isActive===item.path?'custom.isActive':'secondary.main' }}
           >
             <IconButton sx={{ backgroundColor: "custom.bg", mr: 2 }}>
               {item.icon}
@@ -52,7 +54,7 @@ const Sidebar = () => {
             {!isToggle && (
               <ListItemText
                 primary={item.label}
-                sx={{ color: "text.primary" }}
+                sx={{ color: "text.primary",letterSpacing:0.7}}
               />
             )}
           </ListItemButton>

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const AppLayout = () => {
   const size = useSelector((state) => state.layout.gridSize);
-  console.log("In Layout Size", size);
+  
   return (
     <Grid container sx={{ height: "100vh", overflowY: "auto" }}>
       <Grid size={{ xs: 12, sm: size.sm, md: size.md }}>

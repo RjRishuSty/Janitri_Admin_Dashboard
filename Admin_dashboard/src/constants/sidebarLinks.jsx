@@ -8,7 +8,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 export const sidebarLinks = [
   {
     label: "Dashboard",
-    path: "/dashboard",
+    path: "/",
     icon: <DashboardIcon fontSize='medium' sx={{color:'custom.icon'}} />,
   },
   {
@@ -18,7 +18,7 @@ export const sidebarLinks = [
   },
   {
     label: "Service Logs",
-    path: "/service",
+    path: "/service-logs",
     icon: <BuildIcon fontSize='medium' sx={{color:'custom.icon'}} />,
   },
   {

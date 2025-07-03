@@ -7,7 +7,13 @@ export const flexCenter = {
 
 export const flexStart = {
   display: 'flex',
-  justifyContent: 'flex-start',
+  justifyContent: 'start',
+  alignItems: 'start',
+};
+
+export const flexStartwithCenter = {
+  display: 'flex',
+  justifyContent: 'start',
   alignItems: 'center',
 };
 
