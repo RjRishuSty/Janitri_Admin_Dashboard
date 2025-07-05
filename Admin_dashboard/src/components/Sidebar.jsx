@@ -8,15 +8,21 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { sidebarLinks } from "../constants/sidebarLinks";
-import { useSelector } from "react-redux";
-import { flexCenter } from "../styles/custom.style";
+import {  useDispatch, useSelector } from "react-redux";
+import {  flexCenter } from "../styles/custom.style";
+import Logo from "./Logo";
+import { handleCloseSidebar } from "../redux/slices/layout.slice";
 
 const Sidebar = () => {
   const isToggle = useSelector((state) => state.layout.isToggle);
   const location = useLocation();
   const isActive = location.pathname;
+  const dispatch = useDispatch()
+  const isMobile = useMediaQuery(`(max-width:600px)`);
+
   return (
     <Box
       sx={{
@@ -26,37 +32,30 @@ const Sidebar = () => {
         // p:1
       }}
     >
-      <Typography
-        gutterBottom
-        variant="h5"
-        sx={{
-          fontWeight: "bold",
-          textAlign: "center",
-          pt: 2,
-          color: "text.primary",
-          borderBottom: "1px solid #ccc",
-          pb: 2,
-        }}
-      >
-        Janitri Medical
-      </Typography>
+      
+<Logo/>
       <List sx={{ mt: 2 }}>
         {sidebarLinks.map((item, index) => (
           <ListItemButton
             key={index}
+            onClick={()=> dispatch(handleCloseSidebar(false))}
             component={NavLink}
             to={item.path}
-            sx={{ ...(isToggle && flexCenter), backgroundColor:isActive===item.path?'custom.isActive':'secondary.main' }}
+            sx={{
+              ...(isToggle && flexCenter),
+              backgroundColor:
+                isActive === item.path ? "custom.isActive" : "secondary.main",
+            }}
           >
             <IconButton sx={{ backgroundColor: "custom.bg", mr: 2 }}>
               {item.icon}
             </IconButton>
-            {!isToggle && (
+            {!isToggle || isMobile ?(
               <ListItemText
                 primary={item.label}
-                sx={{ color: "text.primary",letterSpacing:0.7}}
+                sx={{ color: "text.primary", letterSpacing: 0.7 }}
               />
-            )}
+            ):""}
           </ListItemButton>
         ))}
       </List>

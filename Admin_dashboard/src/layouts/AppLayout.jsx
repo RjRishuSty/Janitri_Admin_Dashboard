@@ -2,15 +2,25 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import { Grid, Stack } from "@mui/material";
+import { Grid, Stack, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const AppLayout = () => {
   const size = useSelector((state) => state.layout.gridSize);
-  
+  const isToggle = useSelector((state) => state.layout.isToggle);
+  const isMobile = useMediaQuery(`(max-width:600px)`);
+
   return (
     <Grid container sx={{ height: "100vh", overflowY: "auto" }}>
-      <Grid size={{ xs: 12, sm: size.sm, md: size.md }}>
+      <Grid
+        size={{ xs: 10, sm: size.sm, md: size.md }}
+        sx={{
+          position: isMobile ? "absolute" : "relative",
+          zIndex: isMobile ? 99 : 0,
+          height:isMobile?"100vh":"auto",
+          display:isToggle && isMobile?"block": !isMobile?"block":'none'
+        }}
+      >
         <Sidebar />
       </Grid>
 

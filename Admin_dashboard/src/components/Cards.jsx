@@ -9,8 +9,8 @@ const Cards = ({ item }) => {
         {item.icon}
       </CardContent>
       <CardContent sx={{...flexStart,flexDirection:'column'}}>
-        <Typography variant="h5" sx={{color:'text.primary', fontWeight:'bold'}}>{item?.label}</Typography>
-        <Typography sx={{m:'auto',mt:1,textAlign:'center',fontWeight:'bold'}}>{item?.data}</Typography>
+        <Typography variant="h6" sx={{color:'text.primary', fontWeight:'bold'}}>{item?.label}</Typography>
+        <Typography sx={{mt:1,fontWeight:'bold'}}>{item?.data}</Typography>
       </CardContent>
     </Card>
   );

@@ -18,7 +18,7 @@ const lightTheme = createTheme({
     secondary: {
       main: "#fffbe6", // sidebar color
     },
-    text: {
+    text: { 
       primary: "#000", // text color
       secondary: "#fff",
     },
@@ -55,6 +55,17 @@ const lightTheme = createTheme({
           },
           "& .MuiInputLabel-root.Mui-focused": {
             color: "#000",
+          },
+        },
+      },
+    },
+     MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: "black", // default border color
+          '&.Mui-checked': {
+            color: "#000", // checkmark color
+           
           },
         },
       },
@@ -112,6 +123,17 @@ const darkTheme = createTheme({
       },
       "& .MuiInputLabel-root.Mui-focused": {
         color: "#ccc",
+      },
+    },
+     MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: "white", // default border color
+          '&.Mui-checked': {
+            color: "#fff", // checkmark color
+           
+          },
+        },
       },
     },
   },

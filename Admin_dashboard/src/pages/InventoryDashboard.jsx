@@ -1,13 +1,12 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
-// import { saveAs } from "file-saver";
-import { deviceData } from "../constants/deviceData";
 import Cards from "../components/Cards";
 import DevicesIcon from "@mui/icons-material/Devices";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import TableSection from "../components/TableSection";
 import FilterSection from "../components/FilterSection";
+import { useSelector } from "react-redux";
 
 const statusColor = {
   Online: "success",
@@ -16,16 +15,20 @@ const statusColor = {
 };
 
 const InventoryDashboard = () => {
+  const device = useSelector((state) => state.deviceData.device);
   // Summary Stats
-  const totalDevices = deviceData.length;
-  const onlineDevices = deviceData.filter((d) => d.status === "Online").length;
-  const upcomingService = deviceData.filter((d) => {
-    const serviceDate = new Date(d.lastService);
+  const totalDevices = device.length;
+  const onlineDevices = device.filter(
+    (device) => device.status === "Online"
+  ).length;
+  const upcomingService = device.filter((device) => {
+    const serviceDate = new Date(device.lastService);
     const now = new Date();
     const diffDays = (now - serviceDate) / (1000 * 60 * 60 * 24);
     return diffDays > 300; // example logic
   }).length;
 
+  
   const summaryCard = [
     {
       label: "Total Devices",
